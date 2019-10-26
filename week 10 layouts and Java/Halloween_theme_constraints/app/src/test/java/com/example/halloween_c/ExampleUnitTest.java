@@ -1,4 +1,4 @@
-package com.example.aileen.halloween;
+package com.example.halloween_c;
 
 import org.junit.Test;
 
