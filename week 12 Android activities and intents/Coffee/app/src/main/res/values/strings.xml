@@ -12,4 +12,5 @@
     </string-array>
     <string name="coffee_image">coffee cup</string>
     <string name="suggested_coffee">This is your suggested coffee shop</string>
+    <string name="title_activity_coffee">CoffeeActivity</string>
 </resources>

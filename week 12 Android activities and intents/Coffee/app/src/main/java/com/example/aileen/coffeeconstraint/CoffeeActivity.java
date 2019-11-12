@@ -1,23 +1,37 @@
 package com.example.aileen.coffeeconstraint;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Activity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class ReceiveCoffeeActivity extends Activity {
-
+public class CoffeeActivity extends AppCompatActivity {
     private String coffeeShop;
     private String coffeeShopURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_receive_coffee);
+        setContentView(R.layout.activity_coffee);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                loadWebSite(view);
+            }
+        });
 
         //get intent
         Intent intent = getIntent();
@@ -30,17 +44,6 @@ public class ReceiveCoffeeActivity extends Activity {
         TextView messageView = findViewById(R.id.coffeeShopTextView);
         messageView.setText("You should check out " + coffeeShop);
 
-        //get image button
-        ImageButton imageButton = findViewById(R.id.imageButton);
-        //create listener
-        View.OnClickListener onclick = new View.OnClickListener(){
-            public void onClick(View view){
-                loadWebSite(view);
-            }
-        };
-
-        //add listener to the button
-        imageButton.setOnClickListener(onclick);
     }
 
     private void loadWebSite(View view){
@@ -48,4 +51,6 @@ public class ReceiveCoffeeActivity extends Activity {
         intent.setData(Uri.parse(coffeeShopURL));
         startActivity(intent);
     }
+
+
 }

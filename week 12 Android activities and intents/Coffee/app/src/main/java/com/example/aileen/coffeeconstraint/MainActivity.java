@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class MainActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
 
     private Button button;
     private Spinner crowdSpinner;
@@ -45,7 +47,7 @@ public class MainActivity extends Activity {
         Log.i("url suggested", suggestedCoffeeShopURL);
 
         //create an Intent
-        Intent intent = new Intent(this, ReceiveCoffeeActivity.class);
+        Intent intent = new Intent(this, CoffeeActivity.class);
 
         //pass data
         intent.putExtra("coffeeShopName", suggestedCoffeeShop);
