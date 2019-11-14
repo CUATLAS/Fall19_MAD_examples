@@ -1,17 +1,19 @@
-package com.example.aileen.coffeeconstraint;
+package com.example.coffee_new;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 public class MainActivity extends AppCompatActivity {
-
     private Button button;
     private Spinner crowdSpinner;
     private CoffeeShop myCoffeeShop = new CoffeeShop();
@@ -20,40 +22,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //get spinner
-        crowdSpinner = findViewById(R.id.spinner);
-        //get button
+        crowdSpinner=findViewById(R.id.spinner);
         button = findViewById(R.id.button);
         //create listener
-        View.OnClickListener onclick = new View.OnClickListener(){
-            public void onClick(View view){
-                findCoffee(view);
+        View.OnClickListener onclick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findCoffee(v);
             }
         };
-        //add listener to the button
+        //add listener to button
         button.setOnClickListener(onclick);
     }
 
     private void findCoffee(View view){
-        //get spinner item array position
         Integer crowd = crowdSpinner.getSelectedItemPosition();
-        //set the coffee shop
-        myCoffeeShop.setCoffeeShop(crowd);
-        //get suggested coffee shop
-        String suggestedCoffeeShop = myCoffeeShop.getCoffeeShop();
-        //get URL of suggested coffee shop
+        myCoffeeShop.setCoffeeShopName(crowd);
+        String suggestedCoffeeShop = myCoffeeShop.getCoffeeShopName();
         String suggestedCoffeeShopURL = myCoffeeShop.getCoffeeShopURL();
         Log.i("shop suggested", suggestedCoffeeShop);
         Log.i("url suggested", suggestedCoffeeShopURL);
 
-        //create an Intent
-        Intent intent = new Intent(this, CoffeeActivity.class);
-
-        //pass data
+        Intent intent = new Intent(this,CoffeeActivity.class);
         intent.putExtra("coffeeShopName", suggestedCoffeeShop);
         intent.putExtra("coffeeShopURL", suggestedCoffeeShopURL);
-
-        //start intent
         startActivity(intent);
     }
 }
